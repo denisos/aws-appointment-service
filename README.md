@@ -15,6 +15,8 @@ Typescript code and uses serverless-plugin-typescript to compile typescript code
 
 Unit tests written using jest
 
+I wrote how I built this up in a blog post: https://webslainte.blogspot.com/2021/05/aws-lamdba-spinning-up-microservice.html
+
 ## install
 `nvm use`
 
