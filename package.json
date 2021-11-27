@@ -1,0 +1,43 @@
+{
+  "name": "appointment-service",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.85",
+    "@types/uuid": "^8.3.3",
+    "aws-sdk": "^2.1037.0",
+    "uuid": "^8.3.2"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/node": "^16.11.10",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
+    "serverless-plugin-typescript": "^2.1.0",
+    "typescript": "^4.5.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "ts"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "testEnvironment": "node",
+    "roots": [
+      "<rootDir>"
+    ],
+    "modulePaths": [
+      "<rootDir>"
+    ]
+  }
+}

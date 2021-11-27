@@ -1,0 +1,61 @@
+service: appointmentService
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  environment:
+    DYNAMODB_TABLE: 'appointments'
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:Scan
+      Resource: "arn:aws:dynamodb:us-east-1:815631390806:table/appointments"
+
+plugins:
+  - serverless-plugin-typescript
+#package:
+#  exclude:
+#    - node_modules/**/*
+
+functions:
+  getAppointment:
+    handler: handlers/appointmentHandler.get
+    events:
+      - http:
+          path: appointments/{id}
+          method: get
+  createAppointment:
+    handler: handlers/appointmentHandler.create
+    events:
+      - http:
+          path: appointments
+          method: post
+  getAppointments:
+    handler: handlers/appointmentHandler.list
+    events:
+      - http:
+          path: appointments
+          method: get
+
+resources:
+  Resources:
+    AppointmentsDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: appointments
+        AttributeDefinitions:
+          -
+            AttributeName: id
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
